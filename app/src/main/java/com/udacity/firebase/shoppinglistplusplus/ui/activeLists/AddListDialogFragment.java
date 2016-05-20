@@ -97,9 +97,12 @@ public class AddListDialogFragment extends DialogFragment {
         // Get the string that the user entered into the EditText
         String userEnteredName = mEditTextListName.getText().toString();
         String owner = "Anonymous Owner";
-        ShoppingList shoppingList = new ShoppingList(userEnteredName,
+        ShoppingList currentList = new ShoppingList(userEnteredName,
                 owner);
-        ref.child("activeList").setValue(shoppingList);
+        // Go to the "activeList" child node of the root node.
+        // This will create the node for you if it doesn't already exist.
+        // Then using the setValue menu it will serialize the ShoppingList POJO
+        ref.child(Constants.FIREBASE_LOCATION_ACTIVE_LIST).setValue(currentList);
         //ref.child(Constants.FIREBASE_PROPERTY_LIST_NAME).setValue(userEnteredName);
 
     }
